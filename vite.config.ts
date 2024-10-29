@@ -8,5 +8,8 @@ export default defineConfig({
 			target: 'esnext'
 		},
 		exclude: ['@viz/datamodel']
+	},
+	build: {
+		target: 'esnext'
 	}
 });
