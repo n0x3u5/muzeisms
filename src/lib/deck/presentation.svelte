@@ -209,42 +209,6 @@
 	<p class="capitalize">Add Color</p>
 </Slide>
 
-<Slide id="animate" animate>
-	<p class="capitalize">Animate elements</p>
-</Slide>
-
-<Slide id="animate" animate>
-	<p class="capitalize">Animate elements</p>
-	<p class="capitalize">Across slides</p>
-</Slide>
-
-<Slide id="list" animate>
-	<ul>
-		<li>React</li>
-		<li>Solid</li>
-		<li>Svelte</li>
-		<li>Vue</li>
-	</ul>
-</Slide>
-
-<Slide id="list" animate>
-	<ul>
-		<li>Svelte</li>
-		<li>React</li>
-		<li>Solid</li>
-		<li>Vue</li>
-	</ul>
-</Slide>
-
-<Slide id="list" animate>
-	<ul>
-		<li>Svelte ❤️</li>
-		<li>React</li>
-		<li>Solid</li>
-		<li>Vue</li>
-	</ul>
-</Slide>
-
 <Slide>
 	<p class="capitalize">Code Blocks</p>
 </Slide>
@@ -314,7 +278,7 @@
 	<p>Whoa!</p>
 </Slide>
 
-<Markdown>
+<!-- <Markdown>
 	{`
 		## Markdown ❤️
 		You can use **HTML** or **Markdown** for slides.
@@ -325,4 +289,4 @@
 
 <Slide>
 	<p class="capitalize">Get started 😎</p>
-</Slide>
+</Slide> -->
