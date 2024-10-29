@@ -29,5 +29,11 @@ export default ts.config(
 	},
 	{
 		ignores: ['build/', '.svelte-kit/', 'dist/']
+	},
+	{
+		rules: {
+			'no-unused-expressions': 'off',
+			'@typescript-eslint/no-unused-expressions': 'off'
+		}
 	}
 );
