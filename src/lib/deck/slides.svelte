@@ -69,7 +69,32 @@
 					canvas = env.canvas();
 				}
 
-				canvas.data(dm).layers({ mark: 'bar' }).columns(columns).rows(rows).color(color);
+				canvas
+					.data(dm)
+					.layers({ mark: 'bar' })
+					.columns(columns)
+					.rows(rows)
+					.color(color)
+					.config({
+						legend: {
+							color: {
+								range: [
+									'#8DD3C7',
+									'#FFFFB3',
+									'#BEBADA',
+									'#FB8072',
+									'#80B1D3',
+									'#FDB462',
+									'#B3DE69',
+									'#FCCDE5',
+									'#D9D9D9',
+									'#BC80BD',
+									'#CCEBC5',
+									'#FFED6F'
+								]
+							}
+						}
+					});
 
 				if (canvas.mount() == null) {
 					canvas.mount(viz);
