@@ -1,11 +1,29 @@
 <script lang="ts">
-	export let id: string | null = null;
-	export let lines: string | boolean | null = null;
-	export let noescape = false;
+  import type { Snippet } from "svelte";
+
+  let {
+    children,
+    classStr = "",
+    id,
+    lines = true,
+    lineOffset = 1,
+    noescape = true,
+  }: {
+    children?: Snippet;
+    classStr?: string;
+    id?: string;
+    lines?: string | boolean;
+    lineOffset?: number;
+    noescape?: boolean;
+  } = $props();
 </script>
 
-<pre data-id={id || null}>
-  <code data-trim data-line-numbers={lines || null} data-noescape={noescape || null}>
-    <slot />
+<pre class={classStr} data-id={id || null}>
+  <code
+    data-trim
+    data-line-numbers={lines}
+    data-ln-start-from={`${lineOffset}`}
+    data-noescape={noescape}>
+    {@render children?.()}
   </code>
 </pre>

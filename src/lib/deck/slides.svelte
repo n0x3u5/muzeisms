@@ -1,113 +1,139 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+  import { onMount } from "svelte";
 
-	import Reveal from 'reveal.js';
-	import Highlight from 'reveal.js/plugin/highlight/highlight';
-	import Markdown from 'reveal.js/plugin/markdown/markdown';
-	import Notes from 'reveal.js/plugin/notes/notes';
+  import Reveal from "reveal.js";
+  import Highlight from "reveal.js/plugin/highlight/highlight";
+  import Markdown from "reveal.js/plugin/markdown/markdown";
+  import Notes from "reveal.js/plugin/notes/notes";
 
-	import 'reveal.js/dist/reveal.css';
-	import 'reveal.js/dist/theme/dracula.css';
-	// import 'reveal.js/dist/theme/white.css';
-	import 'reveal.js/plugin/highlight/monokai.css';
+  import "reveal.js/dist/reveal.css";
+  import "reveal.js/dist/theme/dracula.css";
+  // import 'reveal.js/dist/theme/white.css';
+  import "../highlight/night-owl.css";
 
-	import Presentation from './presentation.svelte';
+  import Presentation from "./presentation.svelte";
 
-	type Muze = typeof import('@viz/muze').default;
+  import data from "../data/superstore/data.json" with { type: "json" };
+  import schema from "../data/superstore/schema.json" with { type: "json" };
 
-	let {
-		muze
-	}: {
-		muze: Muze;
-	} = $props();
+  type Muze = typeof import("@viz/muze").default;
 
-	const DataModel = $derived(muze.DataModel);
-	const loadedData = $derived(
-		DataModel.loadDataSync(
-			[
-				{ a: 'A', b: 28, c: 14 },
-				{ a: 'B', b: 55, c: 11 },
-				{ a: 'C', b: 43, c: 19 },
-				{ a: 'D', b: 91, c: 27 },
-				{ a: 'E', b: 81, c: 17 },
-				{ a: 'F', b: 53, c: 15 },
-				{ a: 'G', b: 19, c: 20 },
-				{ a: 'H', b: 87, c: 22 },
-				{ a: 'I', b: 52, c: 25 }
-			],
-			[
-				{ name: 'a', type: 'dimension' },
-				{ name: 'b', type: 'measure' },
-				{ name: 'c', type: 'measure' }
-			]
-		)
-	);
-	const dm = $derived(new DataModel(loadedData));
+  let {
+    muze,
+  }: {
+    muze: Muze;
+  } = $props();
 
-	const env = $derived(muze());
+  const DataModel = $derived(muze.DataModel);
+  const loadedData = $derived(DataModel.loadDataSync(data, schema));
+  const dm = $derived(new DataModel(loadedData));
 
-	let viz: HTMLDivElement | null = $state(null);
+  const env = $derived(muze());
 
-	let canvas: Muze['Canvas'] = $state(null);
+  let viz: HTMLDivElement | null = $state(null);
 
-	onMount(() => {
-		Reveal.initialize({
-			plugins: [Markdown, Highlight, Notes]
-		}).then(() => {
-			const onSlideChanged = (event: Event) => {
-				const hasMuze = event.currentSlide.__attributes['data-has-muze'];
-				if (!hasMuze) {
-					if (canvas != null) canvas.dispose();
-					return;
-				}
+  let canvas: Muze["Canvas"] = $state(null);
 
-				const columns = event.currentSlide.__attributes['data-muze-columns'];
-				const rows = event.currentSlide.__attributes['data-muze-rows'];
-				const color = event.currentSlide.__attributes['data-muze-color'];
+  let deck: Reveal.Api | null = $state(null);
+  let isDeckInitialized = $state(false);
 
-				if (canvas == null || canvas._disposed) {
-					canvas = env.canvas();
-				}
+  const useCanvas = (slide, canvas) => {
+    const columns = slide.__attributes["data-muze-columns"];
+    const rows = slide.__attributes["data-muze-rows"];
+    const isShared = slide.__attributes["data-is-shared"];
+    const layers = slide.__attributes["data-muze-layers"] ?? [
+      { mark: "bar", encoding: { color: { value: () => "#FFFFB3" } } },
+    ];
+    const color = slide.__attributes["data-muze-color"];
 
-				canvas
-					.data(dm)
-					.layers({ mark: 'bar' })
-					.columns(columns)
-					.rows(rows)
-					.color(color)
-					.config({
-						legend: {
-							color: {
-								range: [
-									'#8DD3C7',
-									'#FFFFB3',
-									'#BEBADA',
-									'#FB8072',
-									'#80B1D3',
-									'#FDB462',
-									'#B3DE69',
-									'#FCCDE5',
-									'#D9D9D9',
-									'#BC80BD',
-									'#CCEBC5',
-									'#FFED6F'
-								]
-							}
-						}
-					});
+    canvas
+      .data(dm)
+      .layers(layers)
+      .columns(columns)
+      .rows(isShared ? [muze.Operators.share(...rows)] : rows)
+      .color(color)
+      .config({
+        legend: {
+          show: false,
+          color: {
+            range: [
+              "#8DD3C7",
+              "#FFFFB3",
+              "#BEBADA",
+              "#FB8072",
+              "#80B1D3",
+              "#FDB462",
+              "#B3DE69",
+              "#FCCDE5",
+              "#D9D9D9",
+              "#BC80BD",
+              "#CCEBC5",
+              "#FFED6F",
+            ],
+          },
+        },
+      });
+  };
 
-				if (canvas.mount() == null) {
-					canvas.mount(viz);
-				}
-			};
-			Reveal.on('slidechanged', onSlideChanged);
-		});
-	});
+  $effect(() => {
+    if (deck == null || !isDeckInitialized) return;
+
+    const hasMuze = deck.getCurrentSlide().__attributes["data-has-muze"];
+
+    if (hasMuze && (canvas == null || canvas._disposed)) {
+      canvas = env.canvas();
+    }
+  });
+
+  $effect(() => {
+    if (deck == null || !isDeckInitialized || canvas == null || canvas._disposed) return;
+
+    useCanvas(deck.getCurrentSlide(), canvas);
+  });
+
+  $effect(() => {
+    if (deck == null || !isDeckInitialized || canvas == null || canvas._disposed) return;
+
+    const hasMuze = deck.getCurrentSlide().__attributes["data-has-muze"];
+
+    if (hasMuze && canvas.mount() == null) {
+      canvas.mount(viz);
+    }
+  });
+
+  onMount(async () => {
+    deck = new Reveal({
+      hash: true,
+      plugins: [Markdown, Highlight, Notes],
+    });
+
+    await deck.initialize();
+
+    isDeckInitialized = true;
+
+    deck.on("slidechanged", (e) => {
+      const currentSlide = e.currentSlide;
+
+      const hasMuze = currentSlide.__attributes["data-has-muze"];
+
+      if (hasMuze) {
+        if (canvas == null || canvas._disposed) {
+          canvas = env.canvas();
+        }
+        useCanvas(currentSlide, canvas);
+        if (canvas.mount() == null) {
+          canvas.mount(viz);
+        }
+      } else {
+        if (canvas != null) canvas.dispose();
+      }
+    });
+  });
 </script>
 
 <div class="reveal">
-	<div class="slides">
-		<Presentation />
-	</div>
+  <div class="slides">
+    <Presentation />
+  </div>
 </div>
 <div class="absolute left-0 top-0 size-96" bind:this={viz}></div>
