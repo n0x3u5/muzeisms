@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Date",
+    "type": "dimension",
+    "subtype": "temporal",
+    "format": "%Y-%m-%d"
+  },
+  {
+    "name": "Open",
+    "type": "measure"
+  },
+  {
+    "name": "High",
+    "type": "measure"
+  },
+  {
+    "name": "Low",
+    "type": "measure"
+  },
+  {
+    "name": "Close",
+    "type": "measure"
+  },
+  {
+    "name": "Adj Close",
+    "type": "measure"
+  },
+  {
+    "name": "Volume",
+    "type": "measure"
+  }
+]
