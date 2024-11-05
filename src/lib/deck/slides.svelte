@@ -7,8 +7,8 @@
   import Notes from "reveal.js/plugin/notes/notes";
 
   import "reveal.js/dist/reveal.css";
-  // import "reveal.js/dist/theme/dracula.css";
-  import "reveal.js/dist/theme/white.css";
+  import "reveal.js/dist/theme/dracula.css";
+  // import "reveal.js/dist/theme/white.css";
   import "../highlight/night-owl.css";
 
   import Presentation from "./presentation.svelte";
@@ -78,7 +78,11 @@
               )
           : datasetName === "splom"
             ? splomDM
-            : superstoreDM,
+            : superstoreDM.calculateVariable(
+                { name: "Target Sales", type: "measure" },
+                ["Sales"],
+                (sales: number) => sales * 2,
+              ),
       )
       .layers(layers)
       .columns(columns)
@@ -152,7 +156,7 @@
       plugins: [Markdown, Highlight, Notes],
     });
 
-    await deck.initialize();
+    await deck.initialize({ disableLayout: true });
 
     isDeckInitialized = true;
 
@@ -160,6 +164,11 @@
       const currentSlide = e.currentSlide;
 
       const hasMuze = currentSlide.__attributes["data-has-muze"];
+      const isRerendered = currentSlide.__attributes["data-is-rerendered"];
+
+      if (isRerendered) {
+        canvas.dispose();
+      }
 
       if (hasMuze) {
         if (canvas == null || canvas._disposed) {
@@ -181,4 +190,4 @@
     <Presentation />
   </div>
 </div>
-<div class="absolute left-0 top-0 size-96" bind:this={viz}></div>
+<div class="absolute left-1/4 top-4 h-[55%] w-1/2" bind:this={viz}></div>

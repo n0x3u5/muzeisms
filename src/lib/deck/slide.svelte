@@ -2,6 +2,7 @@
   export let id: string | null = null;
   export let animate = false;
   export let restart = false;
+  export let isRerendered = false;
   export let dataset: "aapl" | "superstore" | "splom" = "superstore";
   export let hasMuze: boolean = false;
   export let muzeColumns: Array<string> = [];
@@ -14,7 +15,9 @@
 </script>
 
 <section
+  class="!pointer-events-none size-full"
   data-dataset={dataset}
+  data-is-rerendered={isRerendered}
   data-has-muze={hasMuze}
   data-is-shared={isShared}
   data-muze-columns={muzeColumns}
