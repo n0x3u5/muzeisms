@@ -78,14 +78,14 @@
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
     <h1 class="!text-6xl">Muze in a nutshell</h1>
     <hr />
-    <p class="fragment">Focused on speed</p>
-    <p data-id="expressive" class="fragment">
+    <h3 class="fragment !mt-8">Focused on speed</h3>
+    <h3 data-id="expressive" class="fragment">
       <span data-id="expressive-span">Simple, declarative and expressive API</span>
-    </p>
-    <p class="fragment">
+    </h3>
+    <h3 class="fragment">
       Built for the web
       <span class="fragment block">on JavaScript and WebAssembly</span>
-    </p>
+    </h3>
   </div>
 </Slide>
 
@@ -142,7 +142,7 @@
 <Slide animate>
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
     <p data-id="primitives">
-      <span data-id="primitivess-span" class="text-bue-500 text-6xl">primitives</span>
+      <span data-id="primitivess-span" class="text-6xl font-bold !text-purple-300">Primitives</span>
     </p>
     <hr data-id="divider" />
     <p><span>Data</span></p>
@@ -153,7 +153,7 @@
 
 <Slide animate>
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
-    <p><span class="text-6xl">Data</span></p>
+    <p><span class="text-6xl font-bold !text-purple-300">Data</span></p>
     <hr data-id="divider" />
     <p class="fragment">Ordinal</p>
     <p class="fragment">Nominal</p>
@@ -163,7 +163,7 @@
 
 <Slide animate>
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
-    <p><span class="text-6xl">Data</span></p>
+    <p><span class="text-6xl font-bold !text-purple-300">Data</span></p>
     <hr data-id="divider" />
     <p>Ordinal</p>
     <p>Nominal</p>
@@ -173,7 +173,7 @@
 
 <Slide animate>
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
-    <p><span class="text-6xl">Data</span></p>
+    <p><span class="text-6xl font-bold !text-purple-300">Data</span></p>
     <hr data-id="divider" />
     <p>Attributes</p>
     <p>Nominal</p>
@@ -183,7 +183,7 @@
 
 <Slide animate>
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
-    <p><span class="text-6xl">Data</span></p>
+    <p><span class="text-6xl font-bold !text-purple-300">Data</span></p>
     <hr data-id="divider" />
     <p>Attributes</p>
     <p>Measures</p>
@@ -193,7 +193,7 @@
 
 <Slide animate>
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
-    <p><span class="text-6xl">Data</span></p>
+    <p><span class="text-6xl font-bold !text-purple-300">Data</span></p>
     <hr data-id="divider" />
     <p>Attributes</p>
     <p>Measures</p>
@@ -203,7 +203,7 @@
 
 <Slide animate>
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
-    <h1 class="!prose !prose-invert !font-sans !text-6xl">Marks</h1>
+    <h1 class="!prose !prose-invert !font-sans !text-6xl !text-purple-300">Marks</h1>
     <hr data-id="divider" />
     <p class="fragment">Bars</p>
     <p class="fragment">Points</p>
@@ -216,7 +216,7 @@
 
 <Slide animate>
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
-    <h1 class="!prose !prose-invert !font-sans !text-6xl">Encodings</h1>
+    <h1 class="!prose !prose-invert !font-sans !text-6xl !text-purple-300">Encodings</h1>
     <hr data-id="divider" />
     <p class="fragment">Axes</p>
     <p class="fragment">Colors</p>
@@ -246,7 +246,7 @@
     <p class="fragment">
       <span class="text-4xl">
         Using
-        <span class="px-2 text-6xl text-blue-500">Muze</span>, of course.
+        <span class="pl-2 text-6xl font-bold text-purple-300">Muze</span>, of course.
       </span>
     </p>
   </div>
@@ -327,7 +327,7 @@
 <Slide animate>
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
     <p>
-      Let's start with an empty <span class="px-1 text-4xl text-blue-500">Muze</span> canvas
+      Let's start with an empty <span class="px-1 text-4xl font-bold text-purple-300">Muze</span> canvas
     </p>
     <Code classStr="fragment" id="code">
       {`muze.canvas()`}
@@ -528,9 +528,9 @@
 
 <Slide animate>
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
-    <div class="fragment w-full">
+    <div class="fragment w-1/2">
       <h1 class="!text-6xl">DataModel</h1>
-      <hr data-id="divider" />
+      <hr data-id="divider" class="!w-full" />
     </div>
     <p class="text-2xl">
       It's actually a <span class="italic">super fast</span>,
@@ -547,9 +547,9 @@
 
 <Slide animate>
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
-    <div class="w-full">
+    <div class="fragment w-1/2">
       <h1 class="!text-6xl">DataModel</h1>
-      <hr data-id="divider" />
+      <hr data-id="divider" class="!w-full" />
     </div>
     <p>Powers all data operations performed by Muze.</p>
     <p class="fragment">Allows Muze to deal with raw, un-aggregated data.</p>
@@ -558,9 +558,9 @@
 
 <Slide animate>
   <div class="flex size-full flex-col items-center justify-center px-4 pb-16 pt-4">
-    <div class="w-full">
+    <div class="fragment w-1/2">
       <h1 class="!text-6xl">DataModel</h1>
-      <hr data-id="divider" />
+      <hr data-id="divider" class="!w-full" />
     </div>
     <ul class="!mt-4 text-2xl">
       <li class="fragment">Relational algebra (SELECT, WHERE, GROUP BY, HAVING etc)</li>
@@ -716,10 +716,10 @@
   muzeColumns={["Ship Mode"]}
   muzeRows={[["Sales"], ["Quantity"]]}
   muzeLayers={[
-    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFFFB3" } } },
+    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFCE57" } } },
     {
       mark: "line",
-      encoding: { y: "Quantity", color: { value: () => "#8DD3C7" }, size: { value: () => 0 } },
+      encoding: { y: "Quantity", color: { value: () => "#37A3EB" }, size: { value: () => 0 } },
     },
   ]}
 >
@@ -743,10 +743,10 @@
   muzeColumns={["Ship Mode"]}
   muzeRows={[["Sales"], ["Target Sales"]]}
   muzeLayers={[
-    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFFFB3" } } },
+    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFCE57" } } },
     {
       mark: "line",
-      encoding: { y: "Target Sales", color: { value: () => "#8DD3C7" }, size: { value: () => 0 } },
+      encoding: { y: "Target Sales", color: { value: () => "#37A3EB" }, size: { value: () => 0 } },
     },
   ]}
 >
@@ -770,10 +770,10 @@
   muzeColumns={["Ship Mode"]}
   muzeRows={[["Sales"], ["Target Sales"]]}
   muzeLayers={[
-    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFFFB3" } } },
+    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFCE57" } } },
     {
       mark: "line",
-      encoding: { y: "Target Sales", color: { value: () => "#8DD3C7" }, size: { value: () => 0 } },
+      encoding: { y: "Target Sales", color: { value: () => "#37A3EB" }, size: { value: () => 0 } },
     },
   ]}
 >
@@ -797,10 +797,10 @@
   muzeColumns={["Ship Mode"]}
   muzeRows={[["Sales"], ["Target Sales"]]}
   muzeLayers={[
-    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFFFB3" } } },
+    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFCE57" } } },
     {
       mark: "line",
-      encoding: { y: "Target Sales", color: { value: () => "#8DD3C7" }, size: { value: () => 0 } },
+      encoding: { y: "Target Sales", color: { value: () => "#37A3EB" }, size: { value: () => 0 } },
     },
   ]}
 >
@@ -825,10 +825,10 @@
   muzeColumns={["Ship Mode"]}
   muzeRows={["Sales", "Target Sales"]}
   muzeLayers={[
-    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFFFB3" } } },
+    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFCE57" } } },
     {
       mark: "line",
-      encoding: { y: "Target Sales", color: { value: () => "#8DD3C7" }, size: { value: () => 0 } },
+      encoding: { y: "Target Sales", color: { value: () => "#37A3EB" }, size: { value: () => 0 } },
     },
   ]}
 >
@@ -853,10 +853,10 @@
   muzeColumns={["Ship Mode"]}
   muzeRows={["Sales", "Target Sales"]}
   muzeLayers={[
-    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFFFB3" } } },
+    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFCE57" } } },
     {
       mark: "line",
-      encoding: { y: "Target Sales", color: { value: () => "#8DD3C7" }, size: { value: () => 0 } },
+      encoding: { y: "Target Sales", color: { value: () => "#37A3EB" }, size: { value: () => 0 } },
     },
   ]}
 >
@@ -883,11 +883,11 @@
   muzeLayers={[
     {
       mark: "line",
-      encoding: { y: "Target Sales", color: { value: () => "#8DD3C7" }, size: { value: () => 0 } },
+      encoding: { y: "Target Sales", color: { value: () => "#37A3EB" }, size: { value: () => 0 } },
     },
     {
       mark: "bar",
-      encoding: { y: "Sales", color: { value: () => "#FFFFB3" } },
+      encoding: { y: "Sales", color: { value: () => "#FFCE57" } },
     },
   ]}
 >
@@ -916,37 +916,59 @@
       mark: "bar",
       encoding: {
         y: "Target Sales",
-        color: { value: () => "#8DD3C7" },
+        color: { value: () => "#37A3EB" },
         opacity: { value: () => 0.5 },
         size: { value: () => 1 },
       },
     },
     {
       mark: "bar",
-      encoding: { y: "Sales", color: { value: () => "#FFFFB3" }, size: { value: () => 0.9 } },
+      encoding: { y: "Sales", color: { value: () => "#FFCE57" }, size: { value: () => 0.9 } },
     },
   ]}
   muzeConfig={{
+    theme: {
+      name: "custom",
+      className: "custom-theme",
+      font: {
+        fontSize: "18px",
+        components: {
+          axis: {
+            name: {
+              fontSize: "20px",
+            },
+          },
+          facets: {
+            fontSize: "20px",
+          },
+        },
+      },
+    },
+    columns: {
+      headers: {
+        show: false,
+      },
+      fields: {
+        "Ship Mode": {
+          headers: {
+            show: false,
+          },
+        },
+      },
+    },
+    axes: {
+      x: {
+        showAxisName: true,
+      },
+      y: { transition: { disabled: true } },
+    },
     legend: {
       show: false,
       size: {
         range: [0, 150],
       },
       color: {
-        range: [
-          "#8DD3C7",
-          "#FFFFB3",
-          "#BEBADA",
-          "#FB8072",
-          "#80B1D3",
-          "#FDB462",
-          "#B3DE69",
-          "#FCCDE5",
-          "#D9D9D9",
-          "#BC80BD",
-          "#CCEBC5",
-          "#FFED6F",
-        ],
+        range: ["#FFCE57", "#37A3EB", "#FE1A67", "#4CC0C0", "#8042FF"],
       },
     },
   }}
@@ -977,37 +999,59 @@
       mark: "tick",
       encoding: {
         y: "Target Sales",
-        color: { value: () => "#FFFFFF" },
-        size: { value: () => 0.01 },
+        color: { value: () => "#37A3EB" },
+        size: { value: () => 0.02 },
       },
       transition: { disabled: true },
     },
     {
       mark: "bar",
-      encoding: { y: "Sales", color: { value: () => "#FFFFB3" }, size: { value: () => 0.5 } },
+      encoding: { y: "Sales", color: { value: () => "#FFCE57" }, size: { value: () => 0.5 } },
     },
   ]}
   muzeConfig={{
+    theme: {
+      name: "custom",
+      className: "custom-theme",
+      font: {
+        fontSize: "18px",
+        components: {
+          axis: {
+            name: {
+              fontSize: "20px",
+            },
+          },
+          facets: {
+            fontSize: "20px",
+          },
+        },
+      },
+    },
+    columns: {
+      headers: {
+        show: false,
+      },
+      fields: {
+        "Ship Mode": {
+          headers: {
+            show: false,
+          },
+        },
+      },
+    },
+    axes: {
+      x: {
+        showAxisName: true,
+      },
+      y: { transition: { disabled: true } },
+    },
     legend: {
       show: false,
       size: {
         range: [0, 150],
       },
       color: {
-        range: [
-          "#8DD3C7",
-          "#FFFFB3",
-          "#BEBADA",
-          "#FB8072",
-          "#80B1D3",
-          "#FDB462",
-          "#B3DE69",
-          "#FCCDE5",
-          "#D9D9D9",
-          "#BC80BD",
-          "#CCEBC5",
-          "#FFED6F",
-        ],
+        range: ["#FFCE57", "#37A3EB", "#FE1A67", "#4CC0C0", "#8042FF"],
       },
     },
   }}
@@ -1044,7 +1088,7 @@
     },
     {
       mark: "bar",
-      encoding: { y: "Sales", color: { value: () => "#FFFFB3" }, size: { value: () => 0.5 } },
+      encoding: { y: "Sales", color: { value: () => "#FFCE57" }, size: { value: () => 0.5 } },
     },
   ]}
   muzeConfig={{
@@ -1054,20 +1098,7 @@
         range: [0, 150],
       },
       color: {
-        range: [
-          "#8DD3C7",
-          "#FFFFB3",
-          "#BEBADA",
-          "#FB8072",
-          "#80B1D3",
-          "#FDB462",
-          "#B3DE69",
-          "#FCCDE5",
-          "#D9D9D9",
-          "#BC80BD",
-          "#CCEBC5",
-          "#FFED6F",
-        ],
+        range: ["#FFCE57", "#37A3EB", "#FE1A67", "#4CC0C0", "#8042FF"],
       },
     },
   }}
@@ -1089,7 +1120,7 @@
   muzeLayers={[
     {
       mark: "bar",
-      encoding: { y: "Sales", color: { value: () => "#FFFFB3" } },
+      encoding: { y: "Sales", color: { value: () => "#FFCE57" } },
     },
   ]}
 >
@@ -1118,7 +1149,7 @@
   muzeLayers={[
     {
       mark: "bar",
-      encoding: { y: "Sales", color: { value: () => "#FFFFB3" } },
+      encoding: { y: "Sales", color: { value: () => "#FFCE57" } },
     },
   ]}
 >
@@ -1339,6 +1370,8 @@
 <Slide
   animate
   hasMuze
+  showColumnFacetHeader
+  muzeWidth={1200}
   muzeColumns={["Segment", "Ship Mode"]}
   muzeRows={["Sales"]}
   muzeLayers={[
@@ -1366,6 +1399,8 @@
 <Slide
   animate
   hasMuze
+  showColumnFacetHeader
+  muzeWidth={1200}
   muzeColumns={["Segment", "Ship Mode"]}
   muzeRows={["Sales"]}
   muzeLayers={[
@@ -1393,6 +1428,8 @@
 <Slide
   animate
   hasMuze
+  showColumnFacetHeader
+  muzeWidth={1200}
   muzeColumns={["Segment", "Ship Mode"]}
   muzeRows={["Category", "Sales"]}
   muzeLayers={[
@@ -1440,8 +1477,8 @@
   muzeRows={["Sales", "Target Sales"]}
   isShared
   muzeLayers={[
-    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFFFB3" } } },
-    { mark: "line", encoding: { y: "Target Sales", color: { value: () => "#8DD3C7" } } },
+    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFCE57" } } },
+    { mark: "line", encoding: { y: "Target Sales", color: { value: () => "#37A3EB" } } },
   ]}
 >
   <div class="flex size-full flex-col items-center justify-end px-4 pb-16 pt-4">
@@ -1465,8 +1502,8 @@
   muzeRows={["Sales", "Target Sales"]}
   isShared
   muzeLayers={[
-    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFFFB3" } } },
-    { mark: "line", encoding: { y: "Target Sales", color: { value: () => "#8DD3C7" } } },
+    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFCE57" } } },
+    { mark: "line", encoding: { y: "Target Sales", color: { value: () => "#37A3EB" } } },
   ]}
 >
   <div class="flex size-full flex-col items-center justify-end px-4 pb-16 pt-4">
@@ -1490,8 +1527,8 @@
   muzeRows={["Sales", "Target Sales"]}
   isShared
   muzeLayers={[
-    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFFFB3" } } },
-    { mark: "line", encoding: { y: "Target Sales", color: { value: () => "#8DD3C7" } } },
+    { mark: "bar", encoding: { y: "Sales", color: { value: () => "#FFCE57" } } },
+    { mark: "line", encoding: { y: "Target Sales", color: { value: () => "#37A3EB" } } },
   ]}
 >
   <div class="flex size-full flex-col items-center justify-end px-4 pb-16 pt-4">
@@ -1532,7 +1569,7 @@
   muzeLayers={[
     {
       mark: "bar",
-      encoding: { y0: "Target Sales", y: "Sales", color: { value: () => "#FFFFB3" } },
+      encoding: { y0: "Target Sales", y: "Sales", color: { value: () => "#FFCE57" } },
     },
   ]}
 >
@@ -1832,11 +1869,25 @@
 </Slide>
 
 <style lang="postcss">
+  h1 {
+    @apply font-bold;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply !font-sans;
+  }
+
+  h3 {
+    @apply !p-4 !text-4xl !text-white;
+  }
+
   p {
     @apply !text-3xl;
   }
 
   hr {
-    @apply w-full border border-neutral-200;
+    @apply w-1/2 border border-neutral-200 opacity-30;
   }
 </style>

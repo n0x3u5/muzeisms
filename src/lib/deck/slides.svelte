@@ -55,10 +55,11 @@
     const rows = slide.__attributes["data-muze-rows"];
     const isShared = slide.__attributes["data-is-shared"];
     const layers = slide.__attributes["data-muze-layers"] ?? [
-      { mark: "bar", encoding: { color: { value: () => "#FFFFB3" } } },
+      { mark: "bar", encoding: { color: { value: () => "#FFCE57" } } },
     ];
     const color = slide.__attributes["data-muze-color"];
     const config = slide.__attributes["data-muze-config"];
+    const showColumnFacetHeader = slide.__attributes["data-show-column-facet-header"];
 
     canvas
       .data(
@@ -91,8 +92,43 @@
       .config(
         config == null
           ? {
+              theme: {
+                name: "custom",
+                className: "custom-theme",
+                font: {
+                  fontSize: "18px",
+                  components: {
+                    axis: {
+                      name: {
+                        fontSize: "20px",
+                      },
+                    },
+                    facets: {
+                      fontSize: "20px",
+                    },
+                  },
+                },
+              },
+              columns: {
+                headers: {
+                  show: showColumnFacetHeader,
+                },
+                fields: {
+                  "Ship Mode": {
+                    headers: {
+                      show: showColumnFacetHeader,
+                    },
+                  },
+                },
+              },
               axes: {
-                y: datasetName === "aapl" ? { name: "Price" } : {},
+                x: {
+                  showAxisName: !showColumnFacetHeader,
+                },
+                y:
+                  datasetName === "aapl"
+                    ? { name: "Price", transition: { disabled: true } }
+                    : { transition: { disabled: true } },
               },
               legend: {
                 show: false,
@@ -100,24 +136,8 @@
                   range:
                     datasetName === "aapl"
                       ? ["#ff7b7b", "#73fc96"]
-                      : [
-                          "#8DD3C7",
-                          "#FFFFB3",
-                          "#BEBADA",
-                          "#FB8072",
-                          "#80B1D3",
-                          "#FDB462",
-                          "#B3DE69",
-                          "#FCCDE5",
-                          "#D9D9D9",
-                          "#BC80BD",
-                          "#CCEBC5",
-                          "#FFED6F",
-                        ],
+                      : ["#FFCE57", "#37A3EB", "#FE1A67", "#4CC0C0", "#8042FF"],
                 },
-              },
-              tooltip: {
-                fields: ["Open", "High", "Low", "Close"],
               },
             }
           : config,
@@ -145,8 +165,21 @@
 
     const hasMuze = deck.getCurrentSlide().__attributes["data-has-muze"];
 
+    const muzeWidth = deck.getCurrentSlide().__attributes["data-muze-width"];
+
+    if (muzeWidth != null) {
+      canvas.width(muzeWidth);
+      if (viz != null) viz.style.transform = `translateX(${-muzeWidth / 6}px)`;
+    }
+
     if (hasMuze && canvas.mount() == null) {
       canvas.mount(viz);
+
+      // canvas.on("afterRendered", () => {
+      //   [...document.querySelectorAll(".muze-axis-grid-lines-y path")].forEach(
+      //     (el) => (el.style.opacity = 0.3),
+      //   );
+      // });
     }
   });
 
@@ -174,9 +207,23 @@
         if (canvas == null || canvas._disposed) {
           canvas = env.canvas();
         }
+
+        const muzeWidth = currentSlide.__attributes["data-muze-width"];
+
+        if (muzeWidth != null) {
+          canvas.width(muzeWidth);
+          if (viz != null) viz.style.transform = `translateX(${-muzeWidth / 6}px)`;
+        }
+
         useCanvas(currentSlide, canvas);
         if (canvas.mount() == null) {
           canvas.mount(viz);
+
+          // canvas.on("afterRendered", () => {
+          //   [...document.querySelectorAll(".muze-axis-grid-lines-y path")].forEach(
+          //     (el) => (el.style.opacity = 0.3),
+          //   );
+          // });
         }
       } else {
         if (canvas != null) canvas.dispose();
@@ -191,3 +238,34 @@
   </div>
 </div>
 <div class="absolute left-1/4 top-4 h-[55%] w-1/2" bind:this={viz}></div>
+
+<style lang="postcss">
+  :global(.muze-axis-name) {
+    fill: #ffffff !important;
+  }
+
+  :global(.muze-columnHeader-cell) {
+    font-size: 20px !important;
+    color: #ffffff !important;
+  }
+
+  :global(.muze-axis-grid-lines-y) {
+    opacity: 0.6 !important;
+  }
+
+  :global(.muze-grid-td-geom) {
+    border-color: rgba(214, 214, 214, 0.4) !important;
+  }
+
+  :global(.muze-grid-td-axis) {
+    border-color: rgba(214, 214, 214, 0.6) !important;
+  }
+
+  :global(.muze-grid-td-facet) {
+    border-color: rgba(214, 214, 214, 0.6) !important;
+  }
+
+  :global(.muze-axis-container-left .muze-ticks:nth-child(2) .muze-tick-lines) {
+    opacity: 0 !important;
+  }
+</style>

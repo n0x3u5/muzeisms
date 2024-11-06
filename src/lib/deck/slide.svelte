@@ -12,11 +12,15 @@
   export let isShared: boolean = false;
   export let backgroundImage: string | null = null;
   export let muzeConfig: Record<string, unknown> | null = null;
+  export let showColumnFacetHeader: boolean = false;
+  export let muzeWidth: number | null = null;
 </script>
 
 <section
   class="!pointer-events-none size-full"
   data-dataset={dataset}
+  data-muze-width={muzeWidth}
+  data-show-column-facet-header={showColumnFacetHeader}
   data-is-rerendered={isRerendered}
   data-has-muze={hasMuze}
   data-is-shared={isShared}
